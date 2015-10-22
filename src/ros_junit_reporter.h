@@ -220,6 +220,11 @@ public:
 			if( rootSection.childSections.empty() )
 				className = m_config->name();
 		}
+
+		const char* package = getenv("CATCH_ROS_PACKAGE");
+		if(package)
+			className = std::string(package) + "." + className;
+
 		writeSection( className, "", rootSection );
 	}
 
