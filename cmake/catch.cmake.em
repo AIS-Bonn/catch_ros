@@ -25,7 +25,7 @@ function(catch_add_test target)
 		add_dependencies(tests ${target})
 
 		get_target_property(_target_path ${target} RUNTIME_OUTPUT_DIRECTORY)
-		set(cmd "${_target_path}/${target} -r junit -o ${CATKIN_TEST_RESULTS_DIR}/${PROJECT_NAME}/catch-${target}.xml")
+		set(cmd "env CATCH_ROS_PACKAGE=${PROJECT_NAME} ${_target_path}/${target} -r ros_junit -o ${CATKIN_TEST_RESULTS_DIR}/${PROJECT_NAME}/catch-${target}.xml")
 		catkin_run_tests_target("catch" ${target} "catch-${target}.xml" COMMAND ${cmd} DEPENDENCIES ${target})
 	endif()
 endfunction()

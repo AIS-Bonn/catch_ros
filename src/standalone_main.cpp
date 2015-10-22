@@ -2,6 +2,8 @@
 #define CATCH_CONFIG_RUNNER
 #include <catch_ros/catch.hpp>
 
+#include "ros_junit_reporter.h"
+
 #include <boost/filesystem.hpp>
 
 namespace fs = boost::filesystem;
