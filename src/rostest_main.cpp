@@ -41,12 +41,15 @@ int main( int argc, char** argv )
 
 	// The catkin scripts calling tests do not create the output directory for
 	// us :-(
-	fs::path outputPath = session.configData().outputFilename;
-
-	fs::path outputDir = outputPath.parent_path();
-	if(!fs::exists(outputDir))
+	if(!session.configData().outputFilename.empty())
 	{
-		fs::create_directories(outputDir);
+		fs::path outputPath = session.configData().outputFilename;
+
+		fs::path outputDir = outputPath.parent_path();
+		if(!fs::exists(outputDir))
+		{
+			fs::create_directories(outputDir);
+		}
 	}
 
 	return session.run();
