@@ -47,7 +47,7 @@ instead you can use it in a rostest file.
 
 TEST_CASE("test_case", "[some tag]")
 {
-	EXPECT( (1 + 1) == 2 );
+	REQUIRE( (1 + 1) == 2 );
 }
 ```
 
