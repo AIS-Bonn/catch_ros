@@ -12,13 +12,14 @@ Usage
 
 Usage in `CMakeLists.txt`:
 
-```
+```cmake
 find_package(catkin REQUIRED COMPONENTS
 	...
 	catch_ros
 	...
 )
 
+# Variant 1: standalone test
 catch_add_test(my_standalone_test
 	test/my_test.cpp
 )
@@ -26,6 +27,7 @@ target_link_libraries(my_standalone_test
 	${catkin_LIBRARIES}
 )
 
+# Variant 2: test node used in a rostest file
 catch_add_rostest_node(my_rostest_test
 	test/my_test.cpp
 )
@@ -40,7 +42,7 @@ instead you can use it in a rostest file.
 
 `test/my_test.cpp`:
 
-```
+```C++
 #include <catch_ros/catch.hpp>
 
 TEST_CASE("test_case", "[some tag]")
