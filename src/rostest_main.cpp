@@ -26,6 +26,12 @@ int main( int argc, char** argv )
 		if(strncmp(argv[i], "--gtest_output=xml:", 19) == 0)
 		{
 			test_output = argv[i] + 19;
+
+			// Remove this option from argc, argv
+			int j;
+			for(j = i; j < argc-1; ++j)
+				argv[j] = argv[j+1];
+			argc -= 1;
 		}
 	}
 
@@ -35,7 +41,7 @@ int main( int argc, char** argv )
 		session.configData().outputFilename = test_output;
 	}
 
-	int returnCode = session.applyCommandLine( argc, argv, Catch::Session::OnUnusedOptions::Ignore );
+	int returnCode = session.applyCommandLine( argc, argv );
 	if( returnCode != 0 ) // Indicates a command line error
 		return returnCode;
 
