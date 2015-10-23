@@ -14,6 +14,7 @@
 function(catch_add_test target)
 	add_executable(${target}
 		${ARGN}
+		@(DEVELSPACE ? (PROJECT_SOURCE_DIR + "/src") : CATKIN_PACKAGE_SHARE_DESTINATION)/meta_info.cpp
 	)
 
 	target_link_libraries(${target}
@@ -25,7 +26,7 @@ function(catch_add_test target)
 		add_dependencies(tests ${target})
 
 		get_target_property(_target_path ${target} RUNTIME_OUTPUT_DIRECTORY)
-		set(cmd "env CATCH_ROS_PACKAGE=${PROJECT_NAME} ${_target_path}/${target} -r ros_junit -o ${CATKIN_TEST_RESULTS_DIR}/${PROJECT_NAME}/catch-${target}.xml")
+		set(cmd "${_target_path}/${target} -r ros_junit -o ${CATKIN_TEST_RESULTS_DIR}/${PROJECT_NAME}/catch-${target}.xml")
 		catkin_run_tests_target("catch" ${target} "catch-${target}.xml" COMMAND ${cmd} DEPENDENCIES ${target})
 	endif()
 endfunction()

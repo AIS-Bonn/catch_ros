@@ -19,6 +19,8 @@
 
 #include <assert.h>
 
+#include "meta_info.h"
+
 namespace catch_ros
 {
 
@@ -183,9 +185,7 @@ public:
 		xml.writeAttribute( "tests", stats.totals.assertions.total() );
 		xml.writeAttribute( "hostname", "tbd" ); // !TBD
 
-		const char* package = getenv("CATCH_ROS_PACKAGE");
-		if(package)
-			xml.writeAttribute( "package", package );
+		xml.writeAttribute( "package", catch_ros::meta::packageName() );
 
 		if( m_config->showDurations() == Catch::ShowDurations::Never )
 			xml.writeAttribute( "time", "" );
@@ -221,9 +221,7 @@ public:
 				className = m_config->name();
 		}
 
-		const char* package = getenv("CATCH_ROS_PACKAGE");
-		if(package)
-			className = std::string(package) + "." + className;
+		className = std::string(catch_ros::meta::packageName()) + "." + className;
 
 		writeSection( className, "", rootSection );
 	}

@@ -26,3 +26,8 @@ add_library(catch_ros_rostest
 target_link_libraries(catch_ros_rostest
 	${Boost_LIBRARIES}
 )
+
+install(FILES src/meta_info.cpp DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+install(TARGETS catch_ros_standalone catch_ros_rostest
+	LIBRARY DESTINATION ${CATKIN_GLOBAL_LIB_DESTINATION}
+)
