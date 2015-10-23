@@ -50,6 +50,7 @@ endfunction()
 function(catch_add_rostest_node target)
 	add_executable(${target}
 		${ARGN}
+		@(DEVELSPACE ? (PROJECT_SOURCE_DIR + "/src") : CATKIN_PACKAGE_SHARE_DESTINATION)/meta_info.cpp
 	)
 
 	target_link_libraries(${target}
