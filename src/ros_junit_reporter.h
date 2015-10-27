@@ -221,7 +221,10 @@ public:
 				className = m_config->name();
 		}
 
-		className = std::string(catch_ros::meta::packageName()) + "." + className;
+		if(className.empty())
+			className = catch_ros::meta::packageName();
+		else
+			className = std::string(catch_ros::meta::packageName()) + "." + className;
 
 		writeSection( className, "", rootSection );
 	}
