@@ -1,4 +1,6 @@
 
+add_definitions(-DROS_PACKAGE_NAME=\"${PROJECT_NAME}\")
+
 #
 # Add a Catch executable target.
 #
