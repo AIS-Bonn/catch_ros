@@ -179,7 +179,7 @@ public:
 	{
 		Catch::XmlWriter::ScopedElement e = xml.scopedElement( "testsuite" );
 		Catch::TestGroupStats const& stats = groupNode.value;
-		xml.writeAttribute( "name", stats.groupInfo.name );
+		xml.writeAttribute( "name", m_config->name() );
 		xml.writeAttribute( "errors", unexpectedExceptions );
 		xml.writeAttribute( "failures", stats.totals.assertions.failed-unexpectedExceptions );
 		xml.writeAttribute( "tests", stats.totals.assertions.total() );
