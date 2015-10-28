@@ -217,8 +217,7 @@ public:
 
 		if( className.empty() )
 		{
-			if( rootSection.childSections.empty() )
-				className = m_config->name();
+			className = m_config->name();
 		}
 
 		if(className.empty())
@@ -239,7 +238,8 @@ public:
 
 		if( !sectionNode.assertions.empty() ||
 			!sectionNode.stdOut.empty() ||
-			!sectionNode.stdErr.empty() ) {
+			!sectionNode.stdErr.empty() )
+		{
 			Catch::XmlWriter::ScopedElement e = xml.scopedElement( "testcase" );
 			if( className.empty() ) {
 				xml.writeAttribute( "classname", name );
