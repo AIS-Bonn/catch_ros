@@ -67,7 +67,12 @@ public:
 	virtual void testRunEnded( Catch::TestRunStats const& testRunStats )
 	{
 		Catch::CumulativeReporterBase::testRunEnded( testRunStats );
-		console->testRunEnded(testRunStats);
+
+		// Hide totals if there were no errors. This is done because
+		// catkin_tools reports all collected stderr, which produces a lot
+		// of noise.
+		if(testRunStats.totals.testCases.failed)
+			console->testRunEnded(testRunStats);
 	}
 
 	virtual void testGroupStarting( Catch::GroupInfo const& groupInfo )
