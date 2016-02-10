@@ -19,6 +19,11 @@ function(catch_add_test target)
 		@(DEVELSPACE ? (PROJECT_SOURCE_DIR + "/src") : CATKIN_PACKAGE_SHARE_DESTINATION)/meta_info.cpp
 	)
 
+	# If catch_ros_standalone is built in this CMake instance, add a dependency on it
+	if(TARGET catch_ros_standalone)
+		add_dependencies(${target} catch_ros_standalone)
+	endif()
+
 	target_link_libraries(${target}
 		@(DEVELSPACE ? CATKIN_DEVEL_PREFIX : CMAKE_INSTALL_PREFIX)/lib/libcatch_ros_standalone.so
 	)
@@ -54,6 +59,11 @@ function(catch_add_rostest_node target)
 		${ARGN}
 		@(DEVELSPACE ? (PROJECT_SOURCE_DIR + "/src") : CATKIN_PACKAGE_SHARE_DESTINATION)/meta_info.cpp
 	)
+
+	# If catch_ros_rostest is built in this CMake instance, add a dependency on it
+	if(TARGET catch_ros_rostest)
+		add_dependencies(${target} catch_ros_rostest)
+	endif()
 
 	target_link_libraries(${target}
 		@(DEVELSPACE ? CATKIN_DEVEL_PREFIX : CMAKE_INSTALL_PREFIX)/lib/libcatch_ros_rostest.so
