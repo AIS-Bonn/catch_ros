@@ -7,12 +7,14 @@
 #include <boost/filesystem.hpp>
 
 #include <ros/init.h>
+#include <ros/node_handle.h>
 
 namespace fs = boost::filesystem;
 
 int main( int argc, char** argv )
 {
 	ros::init(argc, argv, "catch_test");
+	ros::NodeHandle nh("~");
 
 	Catch::Session session;
 
