@@ -2,7 +2,9 @@
 cmake_minimum_required(VERSION 2.8)
 project(catch_ros)
 
-find_package(catkin REQUIRED)
+find_package(catkin REQUIRED COMPONENTS
+	roscpp
+)
 
 find_package(Boost REQUIRED COMPONENTS filesystem)
 
@@ -11,7 +13,9 @@ catkin_package(
 	CFG_EXTRAS catch.cmake
 )
 
-include_directories(include)
+include_directories(include ${catkin_INCLUDE_DIRS})
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 add_library(catch_ros_standalone
 	src/standalone_main.cpp
