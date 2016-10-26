@@ -2,8 +2,8 @@
 Changelog for package catch_ros
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.1 (2016-10-26)
+------------------
 * actually install header files
 * Contributors: Max Schwarz
 
