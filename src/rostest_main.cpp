@@ -8,6 +8,7 @@
 
 #include <ros/init.h>
 #include <ros/node_handle.h>
+#include <ros/this_node.h>
 
 namespace fs = boost::filesystem;
 
@@ -46,6 +47,10 @@ int main( int argc, char** argv )
 	int returnCode = session.applyCommandLine( argc, argv );
 	if( returnCode != 0 ) // Indicates a command line error
 		return returnCode;
+
+	std::string nodeName = ros::this_node::getName();
+	std::replace(nodeName.begin(), nodeName.end(), '/', '_');
+	session.configData().name = session.configData().processName + nodeName;
 
 	// The catkin scripts calling tests do not create the output directory for
 	// us :-(
