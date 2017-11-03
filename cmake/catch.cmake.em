@@ -16,7 +16,7 @@ add_definitions(-DROS_PACKAGE_NAME=\"${PROJECT_NAME}\")
 function(catch_add_test target)
 	add_executable(${target}
 		${ARGN}
-		@(DEVELSPACE ? (PROJECT_SOURCE_DIR + "/src") : CATKIN_PACKAGE_SHARE_DESTINATION)/meta_info.cpp
+		@(DEVELSPACE ? (PROJECT_SOURCE_DIR + "/src") : (CMAKE_INSTALL_PREFIX + "/" + CATKIN_PACKAGE_SHARE_DESTINATION))/meta_info.cpp
 	)
 
 	# If catch_ros_standalone is built in this CMake instance, add a dependency on it
@@ -57,7 +57,7 @@ endfunction()
 function(catch_add_rostest_node target)
 	add_executable(${target}
 		${ARGN}
-		@(DEVELSPACE ? (PROJECT_SOURCE_DIR + "/src") : CATKIN_PACKAGE_SHARE_DESTINATION)/meta_info.cpp
+		@(DEVELSPACE ? (PROJECT_SOURCE_DIR + "/src") : (CMAKE_INSTALL_PREFIX + "/" + CATKIN_PACKAGE_SHARE_DESTINATION))/meta_info.cpp
 	)
 
 	# If catch_ros_rostest is built in this CMake instance, add a dependency on it
