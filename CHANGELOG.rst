@@ -2,8 +2,8 @@
 Changelog for package catch_ros
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.2 (2017-11-03)
+------------------
 * cmake: fix meta_info.cpp compilation for install space
 * rostest_main: include ROS node name in report
 * Contributors: Max Schwarz
