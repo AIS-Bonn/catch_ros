@@ -24,7 +24,7 @@
 namespace catch_ros
 {
 
-class ROSReporter : public Catch::CumulativeReporterBase {
+class ROSReporter : public Catch::CumulativeReporterBase<ROSReporter> {
 public:
 	ROSReporter( Catch::ReporterConfig const& _config )
 	 : CumulativeReporterBase( _config )
@@ -59,14 +59,14 @@ public:
 
 	virtual void testRunStarting( Catch::TestRunInfo const& runInfo )
 	{
-		Catch::CumulativeReporterBase::testRunStarting( runInfo );
+		CumulativeReporterBase::testRunStarting( runInfo );
 		console->testRunStarting(runInfo);
 		totalUnexpectedExceptions = 0;
 	}
 
 	virtual void testRunEnded( Catch::TestRunStats const& testRunStats )
 	{
-		Catch::CumulativeReporterBase::testRunEnded( testRunStats );
+		CumulativeReporterBase::testRunEnded( testRunStats );
 
 		// Hide totals if there were no errors. This is done because
 		// catkin_tools reports all collected stderr, which produces a lot
@@ -254,7 +254,7 @@ public:
 				xml.writeAttribute( "classname", className );
 				xml.writeAttribute( "name", name );
 			}
-			xml.writeAttribute( "time", Catch::toString( sectionNode.stats.durationInSeconds ) );
+			xml.writeAttribute( "time", std::to_string( sectionNode.stats.durationInSeconds ) );
 
 			writeAssertions( sectionNode );
 
@@ -352,7 +352,7 @@ public:
 	Catch::ConsoleReporter* console;
 };
 
-INTERNAL_CATCH_REGISTER_REPORTER( "ros_junit", ROSReporter )
+CATCH_REGISTER_REPORTER( "ros_junit", ROSReporter )
 
 }
 
