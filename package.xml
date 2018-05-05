@@ -3,7 +3,8 @@
 	<description>ROS integration for the Catch unit test framework</description>
 	<version>0.1.2</version>
 	<license>BSD</license>
-	<maintainer email="max.schwarz@uni-bonn.de">Max Schwarz</maintainer>
+	<author email="max.schwarz@ais.uni-bonn.de">Max Schwarz</author>
+	<maintainer email="max.schwarz@ais.uni-bonn.de">Max Schwarz</maintainer>
 
 	<buildtool_depend>catkin</buildtool_depend>
 	<depend>roscpp</depend>
