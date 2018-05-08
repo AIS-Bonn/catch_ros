@@ -2,8 +2,8 @@
 Changelog for package catch_ros
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.2.0 (2018-05-08)
+------------------
 * adapt ROSReporter to Catch2
 * upgrade to Catch v2.2.2
 * Contributors: Max Schwarz
