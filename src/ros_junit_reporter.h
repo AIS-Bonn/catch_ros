@@ -77,7 +77,6 @@ public:
 
 	virtual void testGroupStarting( Catch::GroupInfo const& groupInfo )
 	{
-		suiteTimer.start();
 		stdOutForSuite.str("");
 		stdErrForSuite.str("");
 		unexpectedExceptions = 0;
@@ -88,8 +87,6 @@ public:
 
 	virtual void testGroupEnded( Catch::TestGroupStats const& testGroupStats )
 	{
-		double suiteTime = suiteTimer.getElapsedSeconds();
-
 		CumulativeReporterBase::testGroupEnded( testGroupStats );
 		console->testGroupEnded(testGroupStats);
 	}
@@ -153,11 +150,9 @@ public:
 	void writeRun( TestRunNode const& runNode )
 	{
 		Catch::XmlWriter::ScopedElement e = xml.scopedElement( "testsuites" );
-		Catch::TestRunStats const& stats = runNode.value;
 
 		unsigned int tests = 0;
 		unsigned int failures = 0;
-		unsigned int errors = 0;
 		for( TestRunNode::ChildNodes::const_iterator
 				it = runNode.children.begin(), itEnd = runNode.children.end();
 				it != itEnd;
@@ -341,7 +336,6 @@ public:
 	}
 
 	Catch::XmlWriter xml;
-	Catch::Timer suiteTimer;
 	std::ostringstream stdOutForSuite;
 	std::ostringstream stdErrForSuite;
 	unsigned int unexpectedExceptions;
