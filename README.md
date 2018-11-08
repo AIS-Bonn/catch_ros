@@ -55,9 +55,9 @@ License
 -------
 
 The catch_ros wrapper is released under BSD-3. Catch is licensed under
-the Boost license (see the Catch repository for details). We provide the
-single header version for convenience in this repository at
-`include/catch_ros/catch.hpp`.
+the Boost license (see the Catch repository for details). ForkIt is distributed under the MIT License.
+We provide both the single header version for convenience in this repository at
+`include/catch_ros/catch.hpp` and `include/catch_ros/forkit.hpp`.
 
 Contact
 -------

@@ -1,9 +1,8 @@
 
 #define CATCH_CONFIG_RUNNER
+
 #include <catch_ros/catch.hpp>
-
 #include "ros_junit_reporter.h"
-
 #include <boost/filesystem.hpp>
 
 #include <ros/init.h>
@@ -40,7 +39,7 @@ int main( int argc, char** argv )
 
 	if(!test_output.empty())
 	{
-		session.configData().reporterNames = {"ros_junit"};
+		session.configData().reporterName = "ros_junit";
 		session.configData().outputFilename = test_output;
 	}
 
