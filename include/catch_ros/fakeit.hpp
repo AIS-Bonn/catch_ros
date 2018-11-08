@@ -9371,5 +9371,4 @@ namespace fakeit {
 #define When(call) \
     When(call)
 
-
 #endif
