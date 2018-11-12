@@ -40,7 +40,7 @@ int main( int argc, char** argv )
 
 	if(!test_output.empty())
 	{
-		session.configData().reporterNames = {"ros_junit"};
+		session.configData().reporterName = "ros_junit";
 		session.configData().outputFilename = test_output;
 	}
 
