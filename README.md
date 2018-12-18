@@ -51,6 +51,10 @@ TEST_CASE("test_case", "[some tag]")
 }
 ```
 
+**NOTE**: Do not define `CATCH_CONFIG_MAIN` in your code, as you will hide
+the definition of `main()` in `catch_ros`, which performs required command
+line processing and ROS initialization.
+
 License
 -------
 
