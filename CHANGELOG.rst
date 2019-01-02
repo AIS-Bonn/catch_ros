@@ -2,8 +2,8 @@
 Changelog for package catch_ros
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.3.0 (2019-01-02)
+------------------
 * cmake: catch_add_rostest() add new target as dependency of 'tests' target
   (issue: #8, PR: #9)
 * README.md: add CATCH_CONFIG_MAIN hint (issue: #7)
