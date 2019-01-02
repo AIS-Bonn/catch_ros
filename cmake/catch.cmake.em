@@ -65,6 +65,11 @@ function(catch_add_rostest_node target)
 		add_dependencies(${target} catch_ros_rostest)
 	endif()
 
+	# Make sure the test node is built before running any tests, see #8
+	if(TARGET tests)
+		add_dependencies(tests ${target})
+	endif()
+
 	target_link_libraries(${target}
 		@(DEVELSPACE ? CATKIN_DEVEL_PREFIX : CMAKE_INSTALL_PREFIX)/lib/libcatch_ros_rostest.so
 	)
