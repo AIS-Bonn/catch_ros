@@ -158,8 +158,8 @@ public:
 				it != itEnd;
 				++it )
 		{
-			failures += (*it)->value.totals.assertions.failed;
-			tests += (*it)->value.totals.assertions.total();
+			failures += (*it)->value.totals.testCases.failed;
+			tests += (*it)->value.totals.testCases.total();
 		}
 
 		xml.writeAttribute( "errors", totalUnexpectedExceptions );
@@ -181,8 +181,8 @@ public:
 		Catch::TestGroupStats const& stats = groupNode.value;
 		xml.writeAttribute( "name", m_config->name() );
 		xml.writeAttribute( "errors", unexpectedExceptions );
-		xml.writeAttribute( "failures", stats.totals.assertions.failed-unexpectedExceptions );
-		xml.writeAttribute( "tests", stats.totals.assertions.total() );
+		xml.writeAttribute( "failures", stats.totals.testCases.failed-unexpectedExceptions );
+		xml.writeAttribute( "tests", stats.totals.testCases.total() );
 		xml.writeAttribute( "hostname", "tbd" ); // !TBD
 
 		xml.writeAttribute( "package", catch_ros::meta::packageName() );
