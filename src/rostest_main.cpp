@@ -35,6 +35,11 @@ int main( int argc, char** argv )
 			for(j = i; j < argc-1; ++j)
 				argv[j] = argv[j+1];
 			argc -= 1;
+
+			// Re-check the next argument, since rostest will *add* a
+			// --gtest_output argument on each retry.
+			// https://github.com/ros/ros_comm/blob/d9059f49d14b7baf4a58c7759deab1f019681f5b/tools/rostest/src/rostest/runner.py#L137
+			i -= 1;
 		}
 	}
 
