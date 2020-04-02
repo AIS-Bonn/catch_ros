@@ -200,8 +200,8 @@ public:
 				++it )
 			writeTestCase( **it );
 
-		xml.scopedElement( "system-out" ).writeText( Catch::trim( stdOutForSuite.str() ), false );
-		xml.scopedElement( "system-err" ).writeText( Catch::trim( stdErrForSuite.str() ), false );
+		xml.scopedElement( "system-out" ).writeText( Catch::trim( stdOutForSuite.str() ), Catch::XmlFormatting::Newline );
+		xml.scopedElement( "system-err" ).writeText( Catch::trim( stdErrForSuite.str() ), Catch::XmlFormatting::Newline );
 	}
 
 	void writeTestCase( TestCaseNode const& testCaseNode )
@@ -254,9 +254,9 @@ public:
 			writeAssertions( sectionNode );
 
 			if( !sectionNode.stdOut.empty() )
-				xml.scopedElement( "system-out" ).writeText( Catch::trim( sectionNode.stdOut ), false );
+				xml.scopedElement( "system-out" ).writeText( Catch::trim( sectionNode.stdOut ), Catch::XmlFormatting::Newline );
 			if( !sectionNode.stdErr.empty() )
-				xml.scopedElement( "system-err" ).writeText( Catch::trim( sectionNode.stdErr ), false );
+				xml.scopedElement( "system-err" ).writeText( Catch::trim( sectionNode.stdErr ), Catch::XmlFormatting::Newline );
 		}
 		for( SectionNode::ChildSections::const_iterator
 				it = sectionNode.childSections.begin(),
@@ -331,7 +331,7 @@ public:
 			}
 
 			oss << "at " << result.getSourceInfo();
-			xml.writeText( oss.str(), false );
+			xml.writeText( oss.str(), Catch::XmlFormatting::Newline );
 		}
 	}
 
