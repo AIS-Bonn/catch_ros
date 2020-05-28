@@ -2,8 +2,8 @@
 Changelog for package catch_ros
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.0 (2020-05-28)
+------------------
 * cmake: increase minimum version to 3.4 to silence CMP0048 warning
 * rostest_main: handle weird rostest behavior on retries
 * [reporter] makes tests and failure from test-cases instead of assertions
