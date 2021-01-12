@@ -10,6 +10,7 @@ find_package(Boost REQUIRED COMPONENTS filesystem)
 
 catkin_package(
 	INCLUDE_DIRS include
+	CATKIN_DEPENDS roscpp
 	CFG_EXTRAS catch.cmake
 )
 
