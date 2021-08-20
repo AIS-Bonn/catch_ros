@@ -2,8 +2,8 @@
 Changelog for package catch_ros
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.5.0 (2021-08-20)
+------------------
 * Update Catch to version v2.13.7 (PR #15)
 * Update CMakeLists.txt to pass catkin_lint (PR #14)
 * Contributors: Jorge Nicho, Martin Jansa, Max Schwarz, augustinmanecy, sven-herrmann
