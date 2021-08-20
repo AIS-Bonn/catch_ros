@@ -2,6 +2,12 @@
 Changelog for package catch_ros
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Update Catch to version v2.13.7 (PR #15)
+* Update CMakeLists.txt to pass catkin_lint (PR #14)
+* Contributors: Jorge Nicho, Martin Jansa, Max Schwarz, augustinmanecy, sven-herrmann
+
 0.4.0 (2020-05-28)
 ------------------
 * cmake: increase minimum version to 3.4 to silence CMP0048 warning
