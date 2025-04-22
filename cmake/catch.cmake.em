@@ -1,3 +1,6 @@
+
+add_definitions(-DROS_PACKAGE_NAME=\"${PROJECT_NAME}\")
+
 #
 # Add a Catch executable target.
 #
@@ -11,11 +14,9 @@
 # :type source_files: list of strings
 #
 function(catch_add_test target)
-	file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/${target}_meta_info.cpp"
-	"extern \"C\" { const char* catch_ros_local_package_name = \"${PROJECT_NAME}\"; }")
 	add_executable(${target}
 		${ARGN}
-		"${CMAKE_CURRENT_BINARY_DIR}/${target}_meta_info.cpp"
+		@(DEVELSPACE ? (PROJECT_SOURCE_DIR + "/src") : (CMAKE_INSTALL_PREFIX + "/" + CATKIN_PACKAGE_SHARE_DESTINATION))/meta_info.cpp
 	)
 
 	# If catch_ros_standalone is built in this CMake instance, add a dependency on it
@@ -23,7 +24,6 @@ function(catch_add_test target)
 		add_dependencies(${target} catch_ros_standalone)
 	endif()
 
-	target_compile_features(${target} PUBLIC cxx_std_11)
 	target_link_libraries(${target}
 		@(DEVELSPACE ? CATKIN_DEVEL_PREFIX : CMAKE_INSTALL_PREFIX)/lib/libcatch_ros_standalone.so
 	)
@@ -55,11 +55,9 @@ endfunction()
 # :type source_files: list of strings
 #
 function(catch_add_rostest_node target)
-	file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/${target}_meta_info.cpp"
-	"extern \"C\" { const char* catch_ros_local_package_name = \"${PROJECT_NAME}\"; }")
 	add_executable(${target}
 		${ARGN}
-		"${CMAKE_CURRENT_BINARY_DIR}/${target}_meta_info.cpp"
+		@(DEVELSPACE ? (PROJECT_SOURCE_DIR + "/src") : (CMAKE_INSTALL_PREFIX + "/" + CATKIN_PACKAGE_SHARE_DESTINATION))/meta_info.cpp
 	)
 
 	# If catch_ros_rostest is built in this CMake instance, add a dependency on it
@@ -72,7 +70,6 @@ function(catch_add_rostest_node target)
 		add_dependencies(tests ${target})
 	endif()
 
-	target_compile_features(${target} PUBLIC cxx_std_11)
 	target_link_libraries(${target}
 		@(DEVELSPACE ? CATKIN_DEVEL_PREFIX : CMAKE_INSTALL_PREFIX)/lib/libcatch_ros_rostest.so
 	)
