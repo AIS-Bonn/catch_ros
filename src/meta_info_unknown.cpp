@@ -7,9 +7,9 @@ namespace catch_ros
 {
 	namespace meta
 	{
-		const char* packageName()
+		const char* __attribute__((weak)) packageName()
 		{
-			return ROS_PACKAGE_NAME;
+			return "UNKNOWN";
 		}
 	}
 }

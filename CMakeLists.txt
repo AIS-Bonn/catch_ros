@@ -1,8 +1,11 @@
 
-cmake_minimum_required(VERSION 3.4)
+cmake_minimum_required(VERSION 3.13)
 project(catch_ros)
 
-find_package(catkin REQUIRED COMPONENTS roscpp)
+find_package(catkin REQUIRED COMPONENTS
+	roscpp
+)
+
 find_package(Boost REQUIRED COMPONENTS filesystem)
 
 catkin_package(
@@ -13,18 +16,31 @@ catkin_package(
 
 include_directories(include ${catkin_INCLUDE_DIRS})
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
 add_library(catch_ros_standalone
-	src/standalone_main.cpp src/meta_info.cpp
+	src/standalone_main.cpp
+	src/meta_info_unknown.cpp
 )
-target_compile_features(catch_ros_standalone PUBLIC cxx_std_11)
-target_link_libraries(catch_ros_standalone PRIVATE ${Boost_LIBRARIES} ${CMAKE_DL_LIBS})
+target_link_libraries(catch_ros_standalone
+	${Boost_LIBRARIES}
+)
+target_link_options(catch_ros_standalone PRIVATE
+	"-Wl,-z,defs"
+)
 
 add_library(catch_ros_rostest
-	src/rostest_main.cpp src/meta_info.cpp
+	src/rostest_main.cpp
+	src/meta_info_unknown.cpp
 )
-target_compile_features(catch_ros_rostest PUBLIC cxx_std_11)
-target_link_libraries(catch_ros_rostest PRIVATE ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${CMAKE_DL_LIBS})
+target_link_libraries(catch_ros_rostest
+	${Boost_LIBRARIES}
+)
+target_link_options(catch_ros_standalone PRIVATE
+	"-Wl,-z,defs"
+)
 
+install(FILES src/meta_info.cpp DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 install(TARGETS catch_ros_standalone catch_ros_rostest
 	LIBRARY DESTINATION ${CATKIN_GLOBAL_LIB_DESTINATION}
 )
@@ -32,3 +48,4 @@ install(TARGETS catch_ros_standalone catch_ros_rostest
 install(DIRECTORY include/${PROJECT_NAME}/
 	DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 )
+
