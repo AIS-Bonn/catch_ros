@@ -16,8 +16,6 @@ catkin_package(
 
 include_directories(include ${catkin_INCLUDE_DIRS})
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-
 add_library(catch_ros_standalone
 	src/standalone_main.cpp
 	src/meta_info_unknown.cpp
